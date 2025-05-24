@@ -6,7 +6,9 @@ from sqlalchemy.exc import NoResultFound
 import requests
 
 app = Flask(__name__)
-Base.metadata.create_all(bind=engine)
+# Only create tables if explicitly requested
+if os.getenv("CREATE_TABLES", "false").lower() == "true":
+    Base.metadata.create_all(bind=engine)
 
 @app.route("/token", methods=["POST"])
 def issue_token():
