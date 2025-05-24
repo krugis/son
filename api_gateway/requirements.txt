@@ -3,3 +3,4 @@ PyJWT
 psycopg2-binary
 SQLAlchemy
 requests
+psycopg2-binary
