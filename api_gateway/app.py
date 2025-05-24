@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from db import SessionLocal, engine
 from models import Base, Route, RequestLog
