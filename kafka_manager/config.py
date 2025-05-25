@@ -1,7 +1,7 @@
 import os
 
 # Kafka Version and Download
-KAFKA_VERSION = "3.7.0"  # Check Apache Kafka website for the latest stable version
+KAFKA_VERSION = "3.9.1"  # Check Apache Kafka website for the latest stable version
 SCALA_VERSION = "2.13"   # Typically matches Kafka version, check download page
 KAFKA_ARCHIVE = f"kafka_{SCALA_VERSION}-{KAFKA_VERSION}.tgz"
 KAFKA_DOWNLOAD_URL = f"https://downloads.apache.org/kafka/{KAFKA_VERSION}/{KAFKA_ARCHIVE}"
