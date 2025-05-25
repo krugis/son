@@ -1,11 +1,11 @@
 import os
 import logging
 from flask import Flask, request, jsonify
-from flask_cors import CORS # Assuming you'll use CORS for frontend interaction
-from policies import get_all_policies, add_policy, update_policy, delete_policy, load_default_policies
+from flask_cors import CORS
+from policies import get_all_policies, add_policy, update_policy, delete_policy # No longer import load_default_policies_from_db or create_db_tables
 from kafka_consumer import start_consumer_thread, stop_consumer_thread
 from kafka_producer import close_producer
-from config import ALLOWED_ORIGINS, ALLOWED_METHODS, ALLOWED_HEADERS, DEFAULT_POLICIES, FLASK_DEBUG, FLASK_PORT
+from config import ALLOWED_ORIGINS, ALLOWED_METHODS, ALLOWED_HEADERS, FLASK_DEBUG, FLASK_PORT
 
 app = Flask(__name__)
 app.debug = FLASK_DEBUG
@@ -17,8 +17,8 @@ CORS(app,
      allow_headers=ALLOWED_HEADERS,
      supports_credentials=True)
 
-# Load default policies on startup
-load_default_policies(DEFAULT_POLICIES)
+# Database tables and default policies are now handled by init_db.py
+# Removed: create_db_tables() and load_default_policies_from_db(DEFAULT_POLICIES)
 
 @app.route("/policies", methods=["GET"])
 def list_policies():
@@ -69,7 +69,7 @@ def delete_existing_policy(policy_name):
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    """Health check endpoint"""
+    """Health check endpoint."""
     return jsonify({
         "status": "healthy",
         "service": "Policy Engine",
