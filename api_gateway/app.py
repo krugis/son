@@ -5,7 +5,7 @@ from flask_cors import CORS
 from werkzeug.security import check_password_hash, generate_password_hash
 from db import SessionLocal, engine
 from models import Base, Route, RequestLog
-from auth import token_required, generate_token, refresh_access_token, validate_token_format
+from auth import token_required, generate_token
 from config import (
     ALLOWED_ORIGINS, ALLOWED_METHODS, ALLOWED_HEADERS,
     MAX_CONTENT_LENGTH, REQUIRE_USER_AUTH, VALID_USERS
