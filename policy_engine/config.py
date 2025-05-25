@@ -1,7 +1,7 @@
 import os
 
 # Database Configuration
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/policy_db")
+POLICY_DB_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/policy_db")
 # Make sure to replace 'user', 'password', 'localhost:5432', and 'policy_db'
 # with your actual PostgreSQL credentials and database name.
 
