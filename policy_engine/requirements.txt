@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+kafka-python
+Flask
+Flask-Cors
+kafka-python
+SQLAlchemy
+psycopg2-binary
+requests

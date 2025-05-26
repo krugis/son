@@ -1,0 +1,3 @@
+# No specific Python packages required for this script beyond standard library
+# If you were to add more robust features, you might include:
+# requests
