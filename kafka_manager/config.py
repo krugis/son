@@ -24,7 +24,7 @@ KAFKA_BOOTSTRAP_SERVERS = f"localhost:{KAFKA_BROKER_PORT}" # Common Kafka bootst
 # Kafka Topic Names (used by Policy Engine and other services)
 OUTAGE_EVENT_TOPIC = "OutageEvent"
 SCALING_ACTION_TOPIC = "ScalingAction"
-
+RAW_TELEMETRY_TOPIC = "RawTelemetry"
 
 # Command-line tools paths
 KAFKA_BIN_DIR = os.path.join(KAFKA_HOME, "bin")
