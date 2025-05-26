@@ -1,0 +1,97 @@
+[
+  {
+    "timestamp": "2025-05-26T13:30:00Z",
+    "enodeb_id": "ENB1234",
+    "cell_id": "Cell01",
+    "vendor": "Huawei",
+    "location": {
+      "region": "East",
+      "city": "Springfield"
+    },
+    "kpis": {
+      "rsrp_avg": -95,
+      "rsrq_avg": -12,
+      "sinr_avg": 7.5,
+      "throughput_dl_mbps": 15.3,
+      "throughput_ul_mbps": 3.2,
+      "prb_util_dl_percent": 85,
+      "prb_util_ul_percent": 62,
+      "connected_users": 72,
+      "erab_drop_rate_percent": 3.5,
+      "handover_fail_rate_percent": 2.1
+    },
+    "alarms": [
+      {
+        "alarm_id": "ALM456",
+        "severity": "CRITICAL",
+        "description": "Baseband Overload",
+        "active": true,
+        "raised_at": "2025-05-26T13:25:00Z"
+      },
+      {
+        "alarm_id": "ALM789",
+        "severity": "MAJOR",
+        "description": "Transport Link Down",
+        "active": true,
+        "raised_at": "2025-05-26T13:10:00Z"
+      }
+    ],
+    "status": "DEGRADED"
+  },
+  {
+    "timestamp": "2025-05-26T13:31:00Z",
+    "enodeb_id": "ENB1235",
+    "cell_id": "Cell02",
+    "vendor": "Ericsson",
+    "location": {
+      "region": "West",
+      "city": "Capital City"
+    },
+    "kpis": {
+      "rsrp_avg": -80,
+      "rsrq_avg": -8,
+      "sinr_avg": 15.2,
+      "throughput_dl_mbps": 80.5,
+      "throughput_ul_mbps": 20.1,
+      "prb_util_dl_percent": 30,
+      "prb_util_ul_percent": 25,
+      "connected_users": 150,
+      "erab_drop_rate_percent": 0.1,
+      "handover_fail_rate_percent": 0.0
+    },
+    "alarms": [],
+    "status": "OK"
+  },
+  {
+    "timestamp": "2025-05-26T13:32:00Z",
+    "enodeb_id": "ENB1236",
+    "cell_id": "Cell03",
+    "vendor": "Nokia",
+    "location": {
+      "region": "North",
+      "city": "Rivertown"
+    },
+    "kpis": {
+      "rsrp_avg": -105,
+      "rsrq_avg": -15,
+      "sinr_avg": 3.1,
+      "throughput_dl_mbps": 5.8,
+      "throughput_ul_mbps": 1.1,
+      "prb_util_dl_percent": 95,
+      "prb_util_ul_percent": 88,
+      "connected_users": 200,
+      "erab_drop_rate_percent": 8.1,
+      "handover_fail_rate_percent": 5.5
+    },
+    "alarms": [
+      {
+        "alarm_id": "ALM987",
+        "severity": "CRITICAL",
+        "description": "High ERAB Drop Rate",
+        "active": true,
+        "raised_at": "2025-05-26T13:30:00Z"
+      }
+    ],
+    "status": "FAULT"
+  }
+]
