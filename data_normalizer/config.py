@@ -4,4 +4,5 @@ import os
 
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
 RAW_TELEMETRY_TOPIC = os.getenv("RAW_TELEMETRY_TOPIC", "RawTelemetry")
-OUTAGE_EVENT_TOPIC = os.getenv("OUTAGE_EVENT_TOPIC", "OutageEvent")
+#OUTAGE_EVENT_TOPIC = os.getenv("OUTAGE_EVENT_TOPIC", "OutageEvent")
+STRUCTURED_TELEMETRY_TOPIC = os.getenv("STRUCTURED_TELEMETRY_TOPIC", "StructuredTelemetry")
