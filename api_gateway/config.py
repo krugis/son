@@ -39,13 +39,9 @@ ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "*").split(",")
 ALLOWED_METHODS = ["GET", "POST", "PATCH", "DELETE", "OPTIONS"]
 ALLOWED_HEADERS = ["Content-Type", "Authorization"]
 
-# User authentication settings (for token issuance)
-REQUIRE_USER_AUTH = os.getenv("REQUIRE_USER_AUTH", "true").lower() == "true"
-VALID_USERS = {
-    user.split(":")[0]: user.split(":")[1] 
-    for user in os.getenv("VALID_USERS", "").split(",") 
-    if ":" in user
-}
+# User authentication settings (now driven by DB, removed VALID_USERS and REQUIRE_USER_AUTH)
+# REQUIRE_USER_AUTH is implicitly True if users are expected in DB
+# VALID_USERS is no longer needed as users are in the database
 
 # Logging configuration
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
