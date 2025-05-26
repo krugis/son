@@ -219,7 +219,7 @@ def check_kafka_broker_ready():
 
 def ensure_kafka_topics_exist_managed():
     """Ensures that required Kafka topics exist for the Policy Engine."""
-    required_topics = [OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC]
+    required_topics = [OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC, RAW_TELEMETRY_TOPIC]
     
     logger.info("Ensuring required Kafka topics exist...")
     
