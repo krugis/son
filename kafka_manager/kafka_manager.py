@@ -10,7 +10,7 @@ from config import (
     ZOOKEEPER_PROPERTIES_PATH, ZOOKEEPER_DATA_DIR, ZOOKEEPER_START_SCRIPT,
     SERVER_PROPERTIES_PATH, KAFKA_LOG_DIRS, KAFKA_START_SCRIPT,
     KAFKA_TOPICS_SCRIPT, KAFKA_BROKER_PORT, ZOOKEEPER_PORT,
-    KAFKA_BOOTSTRAP_SERVERS, OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC, RAW_TELEMETRY_TOPIC # New imports
+    KAFKA_BOOTSTRAP_SERVERS, OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC, RAW_TELEMETRY_TOPIC, STRUCTURED_TELEMETRY # New imports
 )
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -219,7 +219,7 @@ def check_kafka_broker_ready():
 
 def ensure_kafka_topics_exist_managed():
     """Ensures that required Kafka topics exist for the Policy Engine."""
-    required_topics = [OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC, RAW_TELEMETRY_TOPIC]
+    required_topics = [OUTAGE_EVENT_TOPIC, SCALING_ACTION_TOPIC, RAW_TELEMETRY_TOPIC, STRUCTURED_TELEMETRY]
     
     logger.info("Ensuring required Kafka topics exist...")
     
