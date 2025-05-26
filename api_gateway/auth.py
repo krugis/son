@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 from functools import wraps
 from flask import request, jsonify
 from config import SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, REFRESH_TOKEN_EXPIRE_DAYS
+from db import SessionLocal # Import SessionLocal to query DB for roles
+from models import User # Import User model
 
 def token_required(f):
     @wraps(f)
@@ -40,8 +42,8 @@ def token_required(f):
                 }), 401
             
             # Set user info for the request
-            request.user = data.get("sub")
-            request.user_roles = data.get("roles", [])
+            request.user = data.get("sub") # user_id
+            request.user_roles = data.get("roles", []) # roles from token
             
         except jwt.ExpiredSignatureError:
             return jsonify({
@@ -68,8 +70,18 @@ def generate_tokens(user_id: str, roles: list = None):
     if not user_id or not isinstance(user_id, str):
         raise ValueError("Invalid user ID")
     
+    # If roles are not explicitly provided, fetch them from the database
+    # This ensures that tokens always reflect the current roles from the DB
     if roles is None:
-        roles = []
+        db = SessionLocal()
+        try:
+            user = db.query(User).filter_by(username=user_id).first()
+            if user:
+                roles = user.roles
+            else:
+                roles = [] # Default to no roles if user not found (shouldn't happen after login)
+        finally:
+            db.close()
     
     current_time = datetime.utcnow()
     
@@ -108,6 +120,7 @@ def generate_tokens(user_id: str, roles: list = None):
 
 def refresh_access_token(refresh_token: str):
     """Generate new access token from refresh token"""
+    db = SessionLocal() # For fetching roles
     try:
         # Decode refresh token
         payload = jwt.decode(
@@ -123,14 +136,19 @@ def refresh_access_token(refresh_token: str):
         
         user_id = payload.get("sub")
         
-        # Generate new access token (keeping same roles)
-        # In production, you'd fetch current roles from database
-        return generate_tokens(user_id)
+        # Fetch current roles from database for the new access token
+        user = db.query(User).filter_by(username=user_id).first()
+        if not user or not user.is_active:
+            raise jwt.InvalidTokenError("User not found or inactive")
+        
+        return generate_tokens(user_id, roles=user.roles) # Pass roles from DB
         
     except jwt.ExpiredSignatureError:
         raise jwt.ExpiredSignatureError("Refresh token has expired")
     except jwt.InvalidTokenError as e:
         raise jwt.InvalidTokenError(f"Invalid refresh token: {str(e)}")
+    finally:
+        db.close()
 
 def validate_token_format(token: str) -> bool:
     """Validate JWT token format without decoding"""
