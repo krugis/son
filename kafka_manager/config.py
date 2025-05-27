@@ -25,6 +25,7 @@ KAFKA_BOOTSTRAP_SERVERS = f"localhost:{KAFKA_BROKER_PORT}" # Common Kafka bootst
 OUTAGE_EVENT_TOPIC = "OutageEvent"
 SCALING_ACTION_TOPIC = "ScalingAction"
 RAW_TELEMETRY_TOPIC = "RawTelemetry"
+STRUCTURED_TELEMETRY_TOPIC = "StructuredTelemetry"
 
 # Command-line tools paths
 KAFKA_BIN_DIR = os.path.join(KAFKA_HOME, "bin")
